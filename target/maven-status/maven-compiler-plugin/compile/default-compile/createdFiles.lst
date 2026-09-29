@@ -1,4 +1,6 @@
-murach\business\User.class
 com\mycompany\buoi22\JakartaRestConfiguration.class
 com\mycompany\buoi22\resources\JakartaEE8Resource.class
 murach\email\EmailListServlet.class
+murach\business\User.class
+murach\email\MailUtil$1.class
+murach\email\MailUtil.class

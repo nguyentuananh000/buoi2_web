@@ -37,6 +37,19 @@ public class EmailListServlet extends HttpServlet  {
             User user = new User(firstName, lastName, email);
             //UserDB.insert(user);
             
+            // --- GỌI HÀM GỬI EMAIL THỰC TẾ ---
+            String to = email;
+            String subject = "Xác nhận đăng ký tài khoản thành công!";
+            // Có thể dùng thẻ HTML như <h3>, <p>, <br> để trang trí thư
+            String body = "<h3>Xin chào " + firstName + " " + lastName + ",</h3>"
+                        + "<p>Cảm ơn bạn đã đăng ký tài khoản thành công tại hệ thống của chúng tôi.</p>";
+            
+            // Gửi email trên một luồng riêng để trang web chuyển hướng nhanh, không bị đơ chờ gửi mail
+            new Thread(() -> {
+                MailUtil.sendMail(to, subject, body);
+            }).start();
+            // -----------------------------------
+
             // set User object in request object and set URL
             request.setAttribute("user", user);
             url = "/thanks.jsp";   // the "thanks" page
